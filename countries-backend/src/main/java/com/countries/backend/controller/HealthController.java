@@ -23,7 +23,7 @@ public class HealthController {
     public ResponseEntity<Map<String, Object>> healthCheck() {
         Map<String, Object> healthCheckResponse = healthService.performHealthCheck();
         boolean hasErrors = healthCheckResponse.values().stream().anyMatch(val -> val instanceof Map);
-        HttpStatus status = hasErrors ? HttpStatus.SERVICE_UNAVAILABLE : HttpStatus.OK;
+        HttpStatus status = hasErrors ? HttpStatus.INTERNAL_SERVER_ERROR : HttpStatus.OK;
         return new ResponseEntity<>(healthCheckResponse, status);
     }
 

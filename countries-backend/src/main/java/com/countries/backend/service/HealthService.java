@@ -1,7 +1,7 @@
 package com.countries.backend.service;
 
 import com.countries.backend.helper.HealthConstants;
-import org.springframework.jdbc.core.JdbcTemplate;
+import com.countries.backend.repository.CountryRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -10,10 +10,10 @@ import java.util.Map;
 @Service
 public class HealthService {
 
-    private final JdbcTemplate jdbcTemplate;
+    private final CountryRepository countryRepository;
 
-    public HealthService(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public HealthService(CountryRepository countryRepository) {
+        this.countryRepository = countryRepository;
     }
 
     public Map<String, Object> performHealthCheck() {
@@ -25,7 +25,7 @@ public class HealthService {
 
     public void performPersistenceTest(Map<String, Object> healthCheckResponse) {
         try {
-            jdbcTemplate.queryForObject("SELECT 1", Integer.class);
+            countryRepository.count();
             healthCheckResponse.put(HealthConstants.PERSISTENCE.getKey(), HealthConstants.OK.getKey());
         } catch (Exception e) {
             Map<String, Object> persistenceError = new HashMap<>();
