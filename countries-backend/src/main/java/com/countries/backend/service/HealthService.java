@@ -1,7 +1,6 @@
-package com.countries.backend.services;
+package com.countries.backend.service;
 
-import com.countries.backend.helpers.HealthConstants;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.countries.backend.helper.HealthConstants;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -9,12 +8,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class HealthCheckService {
+public class HealthService {
 
     private final JdbcTemplate jdbcTemplate;
 
-    @Autowired
-    public HealthCheckService(JdbcTemplate jdbcTemplate) {
+    public HealthService(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 

@@ -1,7 +1,6 @@
-package com.countries.backend.controllers;
+package com.countries.backend.controller;
 
-import com.countries.backend.services.HealthCheckService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.countries.backend.service.HealthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,16 +13,15 @@ import java.util.Map;
 @RequestMapping("/api/health")
 public class HealthController {
 
-    private final HealthCheckService healthCheckService;
+    private final HealthService healthService;
 
-    @Autowired
-    public HealthController(HealthCheckService healthCheckService) {
-        this.healthCheckService = healthCheckService;
+    public HealthController(HealthService healthService) {
+        this.healthService = healthService;
     }
 
     @GetMapping
     public ResponseEntity<Map<String, Object>> healthCheck() {
-        Map<String, Object> healthCheckResponse = healthCheckService.performHealthCheck();
+        Map<String, Object> healthCheckResponse = healthService.performHealthCheck();
         boolean hasErrors = healthCheckResponse.values().stream().anyMatch(val -> val instanceof Map);
         HttpStatus status = hasErrors ? HttpStatus.SERVICE_UNAVAILABLE : HttpStatus.OK;
         return new ResponseEntity<>(healthCheckResponse, status);
