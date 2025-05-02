@@ -1,4 +1,4 @@
-package com.countries.backend.helpers;
+package com.countries.backend.helper;
 
 public enum HealthConstants {
 
