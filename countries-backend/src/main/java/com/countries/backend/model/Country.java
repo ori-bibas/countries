@@ -1,15 +1,17 @@
 package com.countries.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import java.util.UUID;
+
+import java.util.List;
 
 @Entity
 @Table(name = "country")
 public class Country {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "country_name", unique = true)
     private String countryName;
@@ -17,11 +19,15 @@ public class Country {
     @Column(name = "country_code", unique = true)
     private String countryCode;
 
-    public UUID getId() {
+    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<CountryAlias> countryAliasList;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -39,6 +45,14 @@ public class Country {
 
     public void setCountryCode(String countryCode) {
         this.countryCode = countryCode;
+    }
+
+    public List<CountryAlias> getCountryAliasList() {
+        return countryAliasList;
+    }
+
+    public void setCountryAliasList(List<CountryAlias> countryAliasList) {
+        this.countryAliasList = countryAliasList;
     }
 
 }

@@ -1,27 +1,29 @@
 package com.countries.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import java.util.UUID;
 
 @Entity
 @Table(name = "country_alias")
 public class CountryAlias {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "alias_name")
     private String countryAlias;
 
-    @Column(name = "fk_country_id")
-    private UUID fkCountryId;
+    @ManyToOne
+    @JoinColumn(name = "fk_country_id", nullable = false)
+    @JsonBackReference
+    private Country country;
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -33,12 +35,12 @@ public class CountryAlias {
         this.countryAlias = countryAlias;
     }
 
-    public UUID getFkCountryId() {
-        return fkCountryId;
+    public Country getCountry() {
+        return country;
     }
 
-    public void setFkCountryId(UUID fkCountryId) {
-        this.fkCountryId = fkCountryId;
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
 }
