@@ -1,6 +1,6 @@
-package com.countries.backend.controller;
+package com.countries.backend.controller.health;
 
-import com.countries.backend.service.HealthService;
+import com.countries.backend.service.health.HealthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

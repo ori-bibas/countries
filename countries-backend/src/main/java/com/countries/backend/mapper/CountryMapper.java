@@ -1,7 +1,7 @@
 package com.countries.backend.mapper;
 
-import com.countries.backend.dto.CountryAliasDTO;
-import com.countries.backend.dto.CountryDTO;
+import com.countries.backend.pojo.dto.CountryAliasDTO;
+import com.countries.backend.pojo.dto.CountryDTO;
 import com.countries.backend.model.Country;
 
 import java.util.ArrayList;

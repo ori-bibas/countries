@@ -1,4 +1,4 @@
-package com.countries.backend.service;
+package com.countries.backend.service.health;
 
 import com.countries.backend.helper.HealthConstants;
 import com.countries.backend.repository.CountryRepository;

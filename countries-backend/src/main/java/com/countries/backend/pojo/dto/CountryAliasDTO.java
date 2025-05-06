@@ -1,4 +1,4 @@
-package com.countries.backend.dto;
+package com.countries.backend.pojo.dto;
 
 public class CountryAliasDTO {
 

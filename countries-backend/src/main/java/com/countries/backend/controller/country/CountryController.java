@@ -1,7 +1,7 @@
-package com.countries.backend.controller;
+package com.countries.backend.controller.country;
 
-import com.countries.backend.dto.CountryDTO;
-import com.countries.backend.service.CountryService;
+import com.countries.backend.pojo.dto.CountryDTO;
+import com.countries.backend.service.country.CountryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

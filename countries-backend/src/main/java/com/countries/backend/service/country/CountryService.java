@@ -1,6 +1,7 @@
-package com.countries.backend.service;
+package com.countries.backend.service.country;
 
-import com.countries.backend.dto.CountryDTO;
+import com.countries.backend.exception.CountriesNotFoundException;
+import com.countries.backend.pojo.dto.CountryDTO;
 import com.countries.backend.exception.CountryNotFoundException;
 import com.countries.backend.mapper.CountryMapper;
 import com.countries.backend.model.Country;
@@ -24,6 +25,8 @@ public class CountryService {
 
     public List<CountryDTO> findAllCountries() {
         List<Country> countries = countryRepository.findAll();
+        if (countries.isEmpty()) throw new CountriesNotFoundException("No countries found.");
+
         List<CountryDTO> countryDTOList = countries.stream()
                 .map(CountryMapper::toDTO)
                 .toList();

@@ -38,4 +38,10 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(CountriesNotFoundException.class)
+    public ResponseEntity<String> handleCountriesNotFoundException(CountriesNotFoundException ex) {
+        logger.error("Countries Not Found: {}", ex.getMessage());
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
 }
